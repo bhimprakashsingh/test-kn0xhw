@@ -28,6 +28,10 @@ jobs:
 
       - name: Install app dependencies
         run: npm install
+        
+      - name: disable capacitor
+        run: ionic integrations disable capacitor
+
 
       - name: Add Android platform
         run: ionic cordova platform add android@latest
