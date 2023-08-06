@@ -27,6 +27,12 @@ jobs:
 
       - name: Build Ionic App
         run: ionic build
+        
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@v1   
+
+      - name: Make gradlew executable
+        run: chmod +x ./android/gradlew
 
       - name: Copy Android
         run: ionic capacitor copy android
@@ -36,7 +42,12 @@ jobs:
 
       - name: Build Android Release APK
         run: ionic capacitor build android --release --prod
-
+        
+      - name: Build application
+        run: |
+             cd ./android
+             ./gradlew assembleDebug 
+             
       #- name: Generate the Android App Bundle
       #  working-directory: ./android/
       #  run: ./gradlew bundle
